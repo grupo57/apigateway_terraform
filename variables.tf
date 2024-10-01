@@ -16,7 +16,7 @@ variable "region" {
 
 // lambda.default
 variable "lambda_runtime" {
-  default = "java11"
+  default = "java17"
 }
 
 
@@ -28,14 +28,14 @@ variable "lambda_authentication_function_handler" {
   default = "br.com.techchallenge.lambda.creator.LambdaJwtCreatorHandler::handleRequest"
 }
 // lambda.authorization.rds
-variable "rdsuser" {
-  default = "user"
+variable "rds-user" {
+  default = ""
 }
-variable "rdspasswd" {
-  default = "pwd"
+variable "rds-passwd" {
+  default = ""
 }
-variable "rdsurl" {
-  default = "url"
+variable "rds-url" {
+  default = ""
 }
 
 

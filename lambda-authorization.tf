@@ -1,10 +1,10 @@
-resource "aws_lambda_function" "java_authentication_lambda_function" {
+resource "aws_lambda_function" "java_authorization_lambda_function" {
   runtime          = "${var.lambda_runtime}"
-  filename         = "${var.lambda_authentication_payload_filename}"
-  source_code_hash = "${base64sha256(filebase64(var.lambda_authentication_payload_filename))}"
-  function_name    = "lambda_authentication"
+  filename         = "${var.lambda_authorization_payload_filename}"
+  source_code_hash = "${base64sha256(filebase64(var.lambda_authorization_payload_filename))}"
+  function_name    = "lambda_authorization"
 
-  handler     = "${var.lambda_authentication_function_handler}"
+  handler     = "${var.lambda_authorization_function_handler}"
   timeout     = 60
   memory_size = 256
   role        = "${aws_iam_role.iam_role_for_lambda.arn}"
@@ -20,10 +20,10 @@ resource "aws_lambda_function" "java_authentication_lambda_function" {
 
 }
 
-resource "aws_lambda_permission" "java_authentication_lambda_function" {
+resource "aws_lambda_permission" "java_authorization_lambda_function" {
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.java_authentication_lambda_function.function_name}"
+  function_name = "${aws_lambda_function.java_authorization_lambda_function.function_name}"
   principal     = "apigateway.amazonaws.com"
   # The /*/* portion grants access from any method on any resource
   # within the API Gateway "REST API".
